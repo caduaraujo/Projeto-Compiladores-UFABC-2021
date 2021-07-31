@@ -9,6 +9,7 @@ bloco       :   (cmd)+
 cmd         : cmdleitura	 {System.out.println("Reconheci um comando de leitura");}
 			| cmdescrita 	{System.out.println("Reconheci um comando de escrita");}
 			| cmdatrib		{System.out.println("Reconheci um comando de atribuicao");}
+			| cmdse			{System.out.println("Reconheci um comando se"); }
             ;
 
 cmdleitura  : 'leia' 
@@ -21,10 +22,16 @@ cmdescrita  : 'escreva' AP ID FP SC
             ;
 cmdatrib    : ID ATTR expr SC
             ;
+            
+cmdse		: 'se' AP expr OP_REL expr FP  '{' (cmd+) '}' ('senao' '{' (cmd+) '}' )?
+			;
 expr        : termo ( OP termo)*
             ;
 termo       : ID | NUMBER
             ;
+            
+OP_REL		: '==' | '>' | '<' | '>=' | '<=' | '!=' 
+			;            
 
 AP          : '('
             ;

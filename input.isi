@@ -4,7 +4,17 @@ programa
 	
 	a = 4/3*2-1+3;
 	
+	se (a < b) {
+		a = 195;
+		b = 3;
+	}
+	senao{
+		a = 193;
+		b = 5;	
+	}
+	
 	escreva(a);
 	escreva(b);
+	
 	
 fimprog;
