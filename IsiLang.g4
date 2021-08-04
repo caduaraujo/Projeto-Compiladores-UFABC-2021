@@ -13,7 +13,7 @@ cmd         : cmdleitura	 	{System.out.println("Reconheci um comando de leitura"
 
 cmdleitura  : 'leia' 
 			AP
-			ID 		{ System.out.println("ID=" + _input.LT(-1).getText());}
+			ID 		{System.out.println("ID=" + _input.LT(-1).getText());}
 			FP 
 			SC
             ;
