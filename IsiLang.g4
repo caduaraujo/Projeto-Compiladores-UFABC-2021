@@ -19,6 +19,14 @@ cmdleitura  : 'leia'
             ;
 cmdescrita  : 'escreva' AP ID FP SC
             ;
+cmdIF	    : 'se' AP expr OP expr FP
+	      'entao' AC expr SC FC
+	      'senao' AC expr SC FC
+	    ;
+cmdWhile    : 'enquanto' AP expr OP expr FP AC
+	      expr SC
+	      FC
+	    ;
 cmdatrib    : ID ATTR expr SC
             ;
 expr        : termo ( OP termo)*
@@ -30,6 +38,10 @@ AP          : '('
             ;
 FP          : ')'
             ;
+AC	    : '{'
+	    ;
+FC	    : '}'
+	    ;
 SC          : ';'
             ;
 OP          : '+' | '-' | '*' | '/'
