@@ -23,27 +23,35 @@ cmd         : cmdleitura	{System.out.println("Reconheci um comando de leitura");
 
 cmdleitura  : 'leia' 
 			AP
-			ID 		{System.out.println("ID=" + _input.LT(-1).getText());}
+			ID 	{System.out.println("ID=" + _input.LT(-1).getText());}
 			FP 
 			SC
             ;
+	    
 cmdescrita  : 'escreva' AP ID FP SC
             ;
+	    
 cmdIF	    : 'se' AP expr OP expr FP
 	      'entao' AC expr SC FC
 	      'senao' AC expr SC FC
 	    ;
+	    
 # precisa olhar esse exemplo de while: https://stackoverflow.com/questions/23098415/visitor-listener-code-for-a-while-loop-in-antlr-4
 cmdWhile    : 'enquanto' AP expr OP expr FP AC
 	       expr SC
 	       FC
 	    ;
+	    
 cmdatrib    : ID ATTR expr SC
             ;
+	    
 expr        : termo ( OP termo)*
             ;
-termo       : ID | NUMBER
+	    
+termo       : ID 
+	    | NUMBER
             ;
+	    
 AP          : '('
             ;
 FP          : ')'
@@ -56,7 +64,10 @@ SC          : ';'
             ;
 VIR         : ','
 	    ;
-OP          : '+' | '-' | '*' | '/'
+OP          : '+' 
+	    | '-' 
+	    | '*' 
+	    | '/'
             ;
 ATTR        : '='
             ;
