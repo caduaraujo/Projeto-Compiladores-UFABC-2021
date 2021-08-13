@@ -4,6 +4,7 @@ programa
 	
 	a = 4/3*2-1+3;
 	
+<<<<<<< HEAD
 	se (a < b) {
 		a = 195;
 		b = 3;
@@ -11,6 +12,18 @@ programa
 	senao{
 		a = 193;
 		b = 5;	
+=======
+	enquanto(a <= 182){
+		escreva(a);
+		b = 15;
+	}
+	
+	se (a == b) entao
+	{
+	a = 185;
+	b = 12;
+	escreva(a);
+>>>>>>> main
 	}
 	
 	escreva(a);
