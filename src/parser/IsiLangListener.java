@@ -1,5 +1,12 @@
 // Generated from IsiLang.g4 by ANTLR 4.7.1
 package parser;
+
+	import DataStructures.IsiSymbol;
+	import DataStructures.IsiVariable;
+	import DataStructures.IsiSymbolTable;
+	import Exceptions.IsiSemanticException;
+	import java.util.ArrayList;
+
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**

@@ -9,6 +9,8 @@ import org.antlr.*;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import Exceptions.IsiSemanticException;
+
 /* 
  * esta é a classe que é responsavel por criar a interação com o usuário 
  * intanciando nosso parser e apontando para o arquivo fonte
@@ -33,7 +35,12 @@ public class MainClass {
 			
 			System.out.println("Compilation Successful");
 			
-		} catch (Exception e) {
+		}
+		catch (IsiSemanticException ex) {
+			System.out.println("Semantic error - " + ex.getMessage());
+		}
+		
+		catch (Exception e) {
 			System.out.println("ERROR "+ e.getMessage() );
 		}
 	}	

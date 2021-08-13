@@ -1,5 +1,12 @@
 // Generated from IsiLang.g4 by ANTLR 4.7.1
 package parser;
+
+	import DataStructures.IsiSymbol;
+	import DataStructures.IsiVariable;
+	import DataStructures.IsiSymbolTable;
+	import Exceptions.IsiSemanticException;
+	import java.util.ArrayList;
+
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -76,6 +83,21 @@ public class IsiLangLexer extends Lexer {
 	public Vocabulary getVocabulary() {
 		return VOCABULARY;
 	}
+
+
+		private int _tipo;
+		private String _varName;
+		private String _varValue; 
+		private IsiSymbolTable symbolTable = new IsiSymbolTable();
+		private IsiSymbol symbol;
+		
+		public void verificaID(String id){
+		
+			if(!symbolTable.exists(id)){
+				throw new IsiSemanticException("Symbol "+_varName+" not declared");
+			}			
+				
+		}
 
 
 	public IsiLangLexer(CharStream input) {
