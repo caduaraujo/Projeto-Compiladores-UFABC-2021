@@ -17,8 +17,10 @@ bloco       :   (cmd)+
             ;
 
 cmd         : cmdleitura	{System.out.println("Reconheci um comando de leitura");}
-	    | cmdescrita 	{System.out.println("Reconheci um comando de escrita");}
-	    | cmdatrib		{System.out.println("Reconheci um comando de atribuicao");}
+	   		 | cmdescrita 	{System.out.println("Reconheci um comando de escrita");}
+	   		 | cmdatrib		{System.out.println("Reconheci um comando de atribuicao");}
+	   		 | cmdIF		{System.out.println("Reconheci um comando if");}
+	   		 | cmdWhile 	{System.out.println("Reconheci um comando while");}
             ;
 
 cmdleitura  : 'leia' 
@@ -31,14 +33,16 @@ cmdleitura  : 'leia'
 cmdescrita  : 'escreva' AP ID FP SC
             ;
 	    
-cmdIF	    : 'se' AP expr OP expr FP
-	      'entao' AC expr SC FC
-	      'senao' AC expr SC FC
-	    ;
+cmdIF	    : 'se' AP expr OPREL expr FP 'entao'
+			 AC 
+			 bloco 
+			 FC
+	      	('senao' AC bloco FC)?
+	   		;
 	    
-# precisa olhar esse exemplo de while: https://stackoverflow.com/questions/23098415/visitor-listener-code-for-a-while-loop-in-antlr-4
-cmdWhile    : 'enquanto' AP expr OP expr FP AC
-	       expr SC
+// precisa olhar esse exemplo de while: https://stackoverflow.com/questions/23098415/visitor-listener-code-for-a-while-loop-in-antlr-4
+cmdWhile    : 'enquanto' AP expr OPREL expr FP AC
+	       bloco 
 	       FC
 	    ;
 	    
@@ -69,6 +73,12 @@ OP          : '+'
 	    | '*' 
 	    | '/'
             ;
+OPREL		: '=='
+			| '>'
+			| '<'
+			| '>='
+			| '<='
+			;  
 ATTR        : '='
             ;
 ID          : [a-z] ([a-z] | [A-Z] | [0-0])*
