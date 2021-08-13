@@ -421,7 +421,7 @@ public class IsiLangParser extends Parser {
 				{
 				setState(63);
 				cmdatrib();
-				System.o+ut.println("Reconheci um comando de atribuicao");
+				System.out.println("Reconheci um comando de atribuicao");
 				}
 				break;
 			case T__6:

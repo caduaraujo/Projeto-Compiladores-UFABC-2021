@@ -18,7 +18,7 @@ bloco       :   (cmd)+
 
 cmd         : cmdleitura	{System.out.println("Reconheci um comando de leitura");}
 	   		 | cmdescrita 	{System.out.println("Reconheci um comando de escrita");}
-	   		 | cmdatrib		{System.o+ut.println("Reconheci um comando de atribuicao");}
+	   		 | cmdatrib		{System.out.println("Reconheci um comando de atribuicao");}
 	   		 | cmdIF		{System.out.println("Reconheci um comando if");}
 	   		 | cmdWhile 	{System.out.println("Reconheci um comando while");}
             ;
