@@ -7,11 +7,13 @@ public class IsiVariable extends IsiSymbol {
 	
 	private int type;
 	private String value;
+
 	
 	public IsiVariable(String name, int type, String value) {
 		super(name);
 		this.type = type;
 		this.value = value;
+
 	}
 
 	@Override

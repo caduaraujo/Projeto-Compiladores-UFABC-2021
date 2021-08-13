@@ -22,7 +22,7 @@ programa
 	}
 	
 	escreva(a);
-	escreva(x);
+	escreva(b);
 	
 	
 fimprog;

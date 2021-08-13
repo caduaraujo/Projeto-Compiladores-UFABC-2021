@@ -92,11 +92,9 @@ public class IsiLangLexer extends Lexer {
 		private IsiSymbol symbol;
 		
 		public void verificaID(String id){
-		
 			if(!symbolTable.exists(id)){
-				throw new IsiSemanticException("Symbol "+_varName+" not declared");
-			}			
-				
+				throw new IsiSemanticException("Symbol "+id+" not declared");
+			}					
 		}
 
 
