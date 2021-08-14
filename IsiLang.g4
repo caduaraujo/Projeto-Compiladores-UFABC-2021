@@ -26,6 +26,7 @@ grammar IsiLang;
 	
 	private String _readID;
 	private String _writeID;
+	private String _writeText;
 	private String _exprID;
 	private String _exprContent;
 	private String _exprDecision;
@@ -57,27 +58,32 @@ grammar IsiLang;
 	
 	public void symbolNotUsed(){
 		hashMapSize = symbolTable.getSize();
-		String[] notUsedSymbols = new String[hashMapSize];
-		for(int j = 0; j < hashMapSize; j++){
-			notUsedSymbols[j] = null;
-		}
-		int i = 0;
+		if(hashMapSize > 0){
+			String[] notUsedSymbols = new String[hashMapSize];
 		
-		for(String id : symbolTable.keySet()) {
-			if(!symbolTable.get(id).isUsed()){
-				notUsedSymbols[i] = symbolTable.get(id).getName();
-				i++;
+		
+			for(int j = 0; j < hashMapSize; j++){
+				notUsedSymbols[j] = null;
 			}
-		}
-	
-	 	if(notUsedSymbols[0] != null){
-	 		String notUsedSymbolsToString = "";
-	 		for(int j=0; j<hashMapSize; j++){
-	 			if(notUsedSymbols[j] == null) break;
-	 			notUsedSymbolsToString += notUsedSymbols[j]+"; " ;
-	 		}
-	 		System.out.println(); 
-			System.out.println ("WARNING: Variables not used: " + notUsedSymbolsToString);
+			int i = 0;
+			
+			for(String id : symbolTable.keySet()) {
+				if(!symbolTable.get(id).isUsed()){
+					notUsedSymbols[i] = symbolTable.get(id).getName();
+					i++;
+				}
+			}
+		
+		 	if(notUsedSymbols[0] != null){
+		 		String notUsedSymbolsToString = "";
+		 		for(int j=0; j<hashMapSize; j++){
+		 			if(notUsedSymbols[j] == null) break;
+		 			notUsedSymbolsToString += notUsedSymbols[j]+"; " ;
+		 		}
+		 		System.out.println(); 
+				System.out.println ("WARNING: Variables not used: " + notUsedSymbolsToString);
+			}
+			
 		}
 	}
 } 
@@ -98,7 +104,7 @@ prog        : 'programa'
 			
             ;
 	    
-decl	    : (declaravar)+
+decl	    : (declaravar)*
 	   		;
 	   	 
 declaravar  : tipo ID 	{
@@ -170,15 +176,29 @@ cmdleitura  : 'leia'
             ;
 	    
 cmdescrita  : 'escreva' 
-			AP 
-			ID { 
+			AP {
+				_writeText = "";
+				_writeID = "";
+			}
+			(ID{ 
 				verificaID(_input.LT(-1).getText());
 				_writeID =_input.LT(-1).getText();
 			}
+			| 
+			TEXTO {
+				_writeText = _input.LT(-1).getText();
+			})
 			FP 
 			SC
 			{
-				CommandEscrita cmd = new CommandEscrita(_writeID);
+				CommandEscrita cmd;
+				if(!_writeID.isBlank()){
+					cmd = new CommandEscrita(_writeID);
+				}
+				else{
+					cmd = new CommandEscrita(_writeText);
+				}
+				
 				stack.peek().add(cmd);
 			}
             ;
@@ -296,3 +316,6 @@ NUMBER      : [0-9]+ ('.' [0-9]+)?
             ;
 WS          : (' ' | '\n' | '\t' | '\r') -> skip
             ;
+            
+TEXTO 		: '"' ( '\\"' | . )*? '"'  
+			;

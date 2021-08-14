@@ -1,28 +1,5 @@
 programa
-
-	numero a, b;
-	texto txt;
 	
-	leia(a);
-	leia(b);
+	escreva("Hello Word");
 	
-	
-	
-	a = 4/3*2-1+3;
-	
-
-	se (a == b) entao
-	{
-		a = 185;
-		b = 12;
-	}
-	senao{
-		escreva(b);
-	}
-	
-	enquanto(a < 182){
-	escreva(a);
-	a = a+8;
-	}
-
 fimprog;
