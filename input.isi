@@ -2,6 +2,7 @@ programa
 
 	numero a, b;
 	texto txt;
+	numero g;
 
 	leia(a);
 	leia(b);

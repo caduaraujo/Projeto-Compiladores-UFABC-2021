@@ -3,6 +3,7 @@ package DataStructures;
 public abstract class IsiSymbol {
 	
 	protected String name;
+	public boolean used;
 	
 	public IsiSymbol(String name) {
 		this.name = name;
@@ -20,6 +21,14 @@ public abstract class IsiSymbol {
 	@Override
 	public String toString() {
 		return "isiSymbol [name=" + name + "]";
+	}
+	
+	public boolean isUsed() {
+		return used;
+	}
+
+	public void setUsed(boolean used) {
+		this.used = used;
 	}
 	
 	

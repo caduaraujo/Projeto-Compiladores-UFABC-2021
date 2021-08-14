@@ -5,6 +5,7 @@ grammar IsiLang;
 	import DataStructures.IsiVariable;
 	import DataStructures.IsiSymbolTable;
 	import Exceptions.IsiSemanticException;
+	import Exceptions.IsiWarning;
 	import java.util.ArrayList;
 }
 
@@ -12,18 +13,58 @@ grammar IsiLang;
 	private int _tipo;
 	private String _varName;
 	private String _varValue; 
-	private IsiSymbolTable symbolTable = new IsiSymbolTable();
+	private boolean _used;
+	protected IsiSymbolTable symbolTable = new IsiSymbolTable();
 	private IsiSymbol symbol;
+	private int hashMapSize;
 	
 	public void verificaID(String id){
 		if(!symbolTable.exists(id)){
 			throw new IsiSemanticException("Symbol "+id+" not declared");
 		}					
+		else{
+			
+			IsiSymbol symbol = symbolTable.get(id);
+			symbol.setUsed(true);
+			System.out.println("Used = true " + id);
+		}
 	}
 } 
 
 
-prog        : 'programa'  decl  bloco   'fimprog'
+prog        : 'programa'
+			decl  
+			bloco   
+			'fimprog'
+			
+			{
+				hashMapSize = symbolTable.getSize();
+				String[] notUsedSymbols = new String[hashMapSize];
+				for(int j = 0; j < hashMapSize; j++){
+					notUsedSymbols[j] = null;
+				}
+				int i = 0;
+				
+				for(String id : symbolTable.keySet()) {
+					if(!symbolTable.get(id).isUsed()){
+						notUsedSymbols[i] = symbolTable.get(id).getName();
+						//System.out.println(symbolTable.get(id).getName());
+						i++;
+					}
+				}
+			
+			 	if(notUsedSymbols[0] != null){
+			 		String notUsedSymbolsToString = "";
+			 		for(int j=0; j<hashMapSize; j++){
+			 			if(notUsedSymbols[j] == null) break;
+			 			notUsedSymbolsToString += notUsedSymbols[j]+"; " ;
+			 		}
+			 	
+					throw new IsiWarning ("Variables not used: " + notUsedSymbolsToString);
+				}
+				
+			}
+			
             ;
 	    
 decl	    : (declaravar)+
@@ -32,7 +73,8 @@ decl	    : (declaravar)+
 declaravar  : tipo ID 	{
 						_varName = _input.LT(-1).getText();
 						_varValue= null;
-						symbol = new IsiVariable(_varName, _tipo, _varValue);
+						_used = false;
+						symbol = new IsiVariable(_varName, _tipo, _varValue, _used);
 						
 							if(!symbolTable.exists(_varName)){
 								System.out.println("Simbolo adicionado " + symbol);
@@ -46,7 +88,8 @@ declaravar  : tipo ID 	{
 			ID			{
 						_varName = _input.LT(-1).getText();
 						_varValue= null;
-						symbol = new IsiVariable(_varName, _tipo, _varValue);
+						_used = false;
+						symbol = new IsiVariable(_varName, _tipo, _varValue, _used);
 						
 						if(!symbolTable.exists(_varName)){
 								System.out.println("Simbolo adicionado " + symbol);

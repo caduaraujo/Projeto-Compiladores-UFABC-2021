@@ -7,15 +7,15 @@ public class IsiVariable extends IsiSymbol {
 	
 	private int type;
 	private String value;
-
 	
-	public IsiVariable(String name, int type, String value) {
+	
+	public IsiVariable(String name, int type, String value, boolean used) {
 		super(name);
 		this.type = type;
 		this.value = value;
-
+		this.used = used;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "IsiVariable [ name=" + name + ", type=" + type + ", value=" + value + "]";

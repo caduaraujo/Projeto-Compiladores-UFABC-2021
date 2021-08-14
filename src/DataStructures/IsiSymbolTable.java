@@ -1,6 +1,7 @@
 package DataStructures;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class IsiSymbolTable {
 	
@@ -21,4 +22,15 @@ public class IsiSymbolTable {
 	public IsiSymbol get(String symbolName) {
 		return map.get(symbolName);
 	}
+	
+	public int getSize() {
+		return map.size();
+	}
+	
+	public Set<String> keySet(){
+		return map.keySet();
+	}
+	
+	
+	
 }

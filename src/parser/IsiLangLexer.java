@@ -5,6 +5,7 @@ package parser;
 	import DataStructures.IsiVariable;
 	import DataStructures.IsiSymbolTable;
 	import Exceptions.IsiSemanticException;
+	import Exceptions.IsiWarning;
 	import java.util.ArrayList;
 
 import org.antlr.v4.runtime.Lexer;
@@ -88,13 +89,21 @@ public class IsiLangLexer extends Lexer {
 		private int _tipo;
 		private String _varName;
 		private String _varValue; 
-		private IsiSymbolTable symbolTable = new IsiSymbolTable();
+		private boolean _used;
+		protected IsiSymbolTable symbolTable = new IsiSymbolTable();
 		private IsiSymbol symbol;
+		private int hashMapSize;
 		
 		public void verificaID(String id){
 			if(!symbolTable.exists(id)){
 				throw new IsiSemanticException("Symbol "+id+" not declared");
 			}					
+			else{
+				
+				IsiSymbol symbol = symbolTable.get(id);
+				symbol.setUsed(true);
+				System.out.println("Used = true " + id);
+			}
 		}
 
 

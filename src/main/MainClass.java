@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
 import Exceptions.IsiSemanticException;
+import Exceptions.IsiWarning;
 
 /* 
  * esta é a classe que é responsavel por criar a interação com o usuário 
@@ -39,9 +40,12 @@ public class MainClass {
 		catch (IsiSemanticException ex) {
 			System.out.println("Semantic error - " + ex.getMessage());
 		}
-		
+		catch (IsiWarning exc) {
+			System.out.println("WARNING :" + exc.getMessage());
+		}
 		catch (Exception e) {
 			System.out.println("ERROR "+ e.getMessage() );
 		}
+		
 	}	
 }
