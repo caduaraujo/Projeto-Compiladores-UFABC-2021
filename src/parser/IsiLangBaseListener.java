@@ -4,9 +4,12 @@ package parser;
 	import DataStructures.IsiSymbol;
 	import DataStructures.IsiVariable;
 	import DataStructures.IsiSymbolTable;
+	import ast.*;
 	import Exceptions.IsiSemanticException;
 	import Exceptions.IsiWarning;
 	import java.util.ArrayList;
+	import java.util.Stack;
+	
 
 
 import org.antlr.v4.runtime.ParserRuleContext;

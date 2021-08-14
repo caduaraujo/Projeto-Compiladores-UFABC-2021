@@ -36,13 +36,16 @@ public class MainClass {
 			
 			System.out.println("Compilation Successful");
 			
+			parser.exibeComandos();
+			
+			parser.generateCode();
+			
+			parser.symbolNotUsed();
 		}
 		catch (IsiSemanticException ex) {
 			System.out.println("Semantic error - " + ex.getMessage());
 		}
-		catch (IsiWarning exc) {
-			System.out.println("WARNING :" + exc.getMessage());
-		}
+		
 		catch (Exception e) {
 			System.out.println("ERROR "+ e.getMessage() );
 		}

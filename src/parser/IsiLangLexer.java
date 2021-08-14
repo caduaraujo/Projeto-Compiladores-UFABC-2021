@@ -4,9 +4,12 @@ package parser;
 	import DataStructures.IsiSymbol;
 	import DataStructures.IsiVariable;
 	import DataStructures.IsiSymbolTable;
+	import ast.*;
 	import Exceptions.IsiSemanticException;
 	import Exceptions.IsiWarning;
 	import java.util.ArrayList;
+	import java.util.Stack;
+	
 
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
@@ -93,6 +96,18 @@ public class IsiLangLexer extends Lexer {
 		protected IsiSymbolTable symbolTable = new IsiSymbolTable();
 		private IsiSymbol symbol;
 		private int hashMapSize;
+		private IsiProgram program = new IsiProgram();
+		private ArrayList<AbstractCommand> curThread;
+		private Stack<ArrayList<AbstractCommand>> stack = new Stack<ArrayList<AbstractCommand>>();
+		
+		private String _readID;
+		private String _writeID;
+		private String _exprID;
+		private String _exprContent;
+		private String _exprDecision;
+		private ArrayList<AbstractCommand> listaTrue;
+		private ArrayList<AbstractCommand> listaFalse;
+		private ArrayList<AbstractCommand> loopContent;
 		
 		public void verificaID(String id){
 			if(!symbolTable.exists(id)){
@@ -102,7 +117,43 @@ public class IsiLangLexer extends Lexer {
 				
 				IsiSymbol symbol = symbolTable.get(id);
 				symbol.setUsed(true);
-				System.out.println("Used = true " + id);
+
+			}
+		}
+		
+		public void exibeComandos(){
+			for(AbstractCommand c : program.getComandos()){
+				System.out.println(c);
+			}
+		}
+		
+		public void generateCode(){
+			program.generateTarget();
+		}
+		
+		public void symbolNotUsed(){
+			hashMapSize = symbolTable.getSize();
+			String[] notUsedSymbols = new String[hashMapSize];
+			for(int j = 0; j < hashMapSize; j++){
+				notUsedSymbols[j] = null;
+			}
+			int i = 0;
+			
+			for(String id : symbolTable.keySet()) {
+				if(!symbolTable.get(id).isUsed()){
+					notUsedSymbols[i] = symbolTable.get(id).getName();
+					i++;
+				}
+			}
+		
+		 	if(notUsedSymbols[0] != null){
+		 		String notUsedSymbolsToString = "";
+		 		for(int j=0; j<hashMapSize; j++){
+		 			if(notUsedSymbols[j] == null) break;
+		 			notUsedSymbolsToString += notUsedSymbols[j]+"; " ;
+		 		}
+		 		System.out.println(); 
+				System.out.println ("WARNING: Variables not used: " + notUsedSymbolsToString);
 			}
 		}
 

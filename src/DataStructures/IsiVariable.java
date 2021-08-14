@@ -20,7 +20,26 @@ public class IsiVariable extends IsiSymbol {
 	public String toString() {
 		return "IsiVariable [ name=" + name + ", type=" + type + ", value=" + value + "]";
 	}
-	
+
+	@Override
+	public String generateJavaCode() {
+		String str;
+		if(type == NUMBER) {
+			str = "double ";
+		}
+		else {
+			str = "String ";
+		}
+		return str + " " +super.name+";";
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
 	
 
 }
