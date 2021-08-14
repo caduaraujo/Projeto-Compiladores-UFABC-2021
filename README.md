@@ -4,7 +4,7 @@
 ### Integrantes
 - Rafael Hajime Mori
 - Carlos Eduardo de Araujo
-- Lucas Almeida
+- Lucas Venâncio de Almeida
 
 Compilador da IsiLanguage para java, usando a ferramenta antlr4,
 que implementa os seguintes recursos:
