@@ -1,22 +1,6 @@
 programa
-	leia(a);
-	leia(b);
 	
-	a = 4/3*2-1+3;
+	escreva("Hello Word");
 	
-	enquanto(a <= 182){
-		escreva(a);
-		b = 15;
-	}
-	
-	se (a == b) entao
-	{
-	a = 185;
-	b = 12;
-	escreva(a);
-	}
-	
-	escreva(a);
-	escreva(b);
-	
+
 fimprog;

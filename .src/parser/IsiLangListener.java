@@ -1,16 +1,5 @@
 // Generated from IsiLang.g4 by ANTLR 4.7.1
 package parser;
-
-	import DataStructures.IsiSymbol;
-	import DataStructures.IsiVariable;
-	import DataStructures.IsiSymbolTable;
-	import ast.*;
-	import Exceptions.IsiSemanticException;
-	import Exceptions.IsiWarning;
-	import java.util.ArrayList;
-	import java.util.Stack;
-	
-
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -28,36 +17,6 @@ public interface IsiLangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProg(IsiLangParser.ProgContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link IsiLangParser#decl}.
-	 * @param ctx the parse tree
-	 */
-	void enterDecl(IsiLangParser.DeclContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link IsiLangParser#decl}.
-	 * @param ctx the parse tree
-	 */
-	void exitDecl(IsiLangParser.DeclContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link IsiLangParser#declaravar}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclaravar(IsiLangParser.DeclaravarContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link IsiLangParser#declaravar}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclaravar(IsiLangParser.DeclaravarContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link IsiLangParser#tipo}.
-	 * @param ctx the parse tree
-	 */
-	void enterTipo(IsiLangParser.TipoContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link IsiLangParser#tipo}.
-	 * @param ctx the parse tree
-	 */
-	void exitTipo(IsiLangParser.TipoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link IsiLangParser#bloco}.
 	 * @param ctx the parse tree
@@ -99,26 +58,6 @@ public interface IsiLangListener extends ParseTreeListener {
 	 */
 	void exitCmdescrita(IsiLangParser.CmdescritaContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link IsiLangParser#cmdIF}.
-	 * @param ctx the parse tree
-	 */
-	void enterCmdIF(IsiLangParser.CmdIFContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link IsiLangParser#cmdIF}.
-	 * @param ctx the parse tree
-	 */
-	void exitCmdIF(IsiLangParser.CmdIFContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link IsiLangParser#cmdWhile}.
-	 * @param ctx the parse tree
-	 */
-	void enterCmdWhile(IsiLangParser.CmdWhileContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link IsiLangParser#cmdWhile}.
-	 * @param ctx the parse tree
-	 */
-	void exitCmdWhile(IsiLangParser.CmdWhileContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link IsiLangParser#cmdatrib}.
 	 * @param ctx the parse tree
 	 */
@@ -128,6 +67,16 @@ public interface IsiLangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCmdatrib(IsiLangParser.CmdatribContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link IsiLangParser#cmdse}.
+	 * @param ctx the parse tree
+	 */
+	void enterCmdse(IsiLangParser.CmdseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IsiLangParser#cmdse}.
+	 * @param ctx the parse tree
+	 */
+	void exitCmdse(IsiLangParser.CmdseContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link IsiLangParser#expr}.
 	 * @param ctx the parse tree

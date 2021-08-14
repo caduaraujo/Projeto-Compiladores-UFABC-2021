@@ -9,11 +9,14 @@ import org.antlr.*;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import Exceptions.IsiSemanticException;
+import Exceptions.IsiWarning;
+
 /* 
- * esta é a classe que é responsavel por criar a interação com o usuário 
+ * esta ï¿½ a classe que ï¿½ responsavel por criar a interaï¿½ï¿½o com o usuï¿½rio 
  * intanciando nosso parser e apontando para o arquivo fonte
  * 
- * Arquivo fonte: extensão .isi
+ * Arquivo fonte: extensï¿½o .isi
  * */
 
 public class MainClass {
@@ -33,8 +36,19 @@ public class MainClass {
 			
 			System.out.println("Compilation Successful");
 			
-		} catch (Exception e) {
+			parser.exibeComandos();
+			
+			parser.generateCode();
+			
+			parser.symbolNotUsed();
+		}
+		catch (IsiSemanticException ex) {
+			System.out.println("Semantic error - " + ex.getMessage());
+		}
+		
+		catch (Exception e) {
 			System.out.println("ERROR "+ e.getMessage() );
 		}
+		
 	}	
 }

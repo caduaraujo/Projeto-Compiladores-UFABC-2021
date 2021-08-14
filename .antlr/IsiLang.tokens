@@ -20,7 +20,6 @@ ATTR=19
 ID=20
 NUMBER=21
 WS=22
-TEXTO=23
 'programa'=1
 'fimprog'=2
 'numero'=3
