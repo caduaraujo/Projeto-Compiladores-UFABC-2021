@@ -42,11 +42,11 @@ public class IsiProgram {
 		for(AbstractCommand command : comandos) {
 			str.append(command.generateJavaCode()+"\n");
 		}
-		str.append("	}");
+		str.append("	}\n");
 		str.append("}");
 		
 		try {
-			FileWriter fr = new FileWriter(new File("MainGenerated.java"));
+			FileWriter fr = new FileWriter(new File("MainClass.java"));
 			fr.write(str.toString());
 			fr.close();
 		}
