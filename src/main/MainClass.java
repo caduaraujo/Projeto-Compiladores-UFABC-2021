@@ -13,10 +13,10 @@ import Exceptions.IsiSemanticException;
 import Exceptions.IsiWarning;
 
 /* 
- * esta é a classe que é responsavel por criar a interação com o usuário 
+ * esta ï¿½ a classe que ï¿½ responsavel por criar a interaï¿½ï¿½o com o usuï¿½rio 
  * intanciando nosso parser e apontando para o arquivo fonte
  * 
- * Arquivo fonte: extensão .isi
+ * Arquivo fonte: extensï¿½o .isi
  * */
 
 public class MainClass {
